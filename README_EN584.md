@@ -13,7 +13,7 @@ Four types of incubations were conducted:
 3. Gravity Filtration (GF) - filters containing particles (filtered from seawater) suspended in autoclaved seawater
 4. Free Living (free) - filtrate from gravity filtration, containing only free living bacteria and no particles
 
-This folder contains five R scripts:
+This folder the following R scripts:
 
 * Plate_UpdateTimesheet_EN584.R - from a directory of plate reader output files (.xlsx), extract the time sampled, calculate the elapsed time (in hours) from the t0 sampling point. Output timesheet as a .csv file.
 
@@ -24,3 +24,7 @@ This folder contains five R scripts:
 * rawToRatesEN584_GF.R - calculate hydrolysis rates for all GF incubations. Takes timesheet, volume of seawater filtered for particles, fraction of the filter used in incubation, and folder containing .xlsx plate reader output files. Outputs rates as .csv file.
 
 * rawToRatesEN584_free.R - calculate hydrolysis rates for all free living incubations. Takes timesheet and folder containing .xlsx plate reader output files, outputs rates as .csv file.
+
+* furtherProcessing_plateEN584.R - extract max rate timepoints, add factors and save as new csv file for all incubation types.
+
+* figures_plateEN584.R - create figures for plate reader data, save in figures/ folder. 
