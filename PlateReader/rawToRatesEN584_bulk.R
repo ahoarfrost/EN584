@@ -106,13 +106,6 @@ for (inc in 1:length(ExptList)) {
             
             slopedf <- rbind(slopedf, changeFL/hr)
             
-            #mean_slope <- rowMeans(changeFL/hr)
-            #sd_slope <- sd(changeFL/hr)
-            #timep <- names(mean_slope)
-            
-            #add to slopedf dataframe
-            #slopedf[title,paste(timep,"rate",sep="_")] <- mean_slope
-            #slopedf[title,paste(timep,"sd",sep="_")] <- sd_slope
         }
         #divide max slopes by m.muf or m.mca (depending on substrate) to get rates
         m.fluorophore <- stdslopes[[names(fl.list[substrate])]]
@@ -127,32 +120,11 @@ for (inc in 1:length(ExptList)) {
         avg_sd <- sd(rate, na.rm=TRUE)
         #create row of rates 
         rate <- append(rate, c("average"=avg, "std_dev"=avg_sd))
-        
-        #find mean rate of all timepoints, record as avg_potential_rate; potential_sd
-        #avg <- rowMeans(ratesdf[title,grep("rate",colnames(ratesdf))])
-        #avg_sd <- sd(ratesdf[title,grep("rate",colnames(ratesdf))])
-        
-        #find max rate timepoint, record as max_mean and max_sd, and record which tp is max_timepoint
-        #max_rate <- max(ratesdf[title,grep("rate",colnames(ratesdf))])
-        #tp_id <- substr(names(ratesdf[match(ratesdf,max_rate,nomatch=0)==1])[1],1,2)
-        #max_sd <- ratesdf[,paste(tp_id,"sd",sep="_")]
-        
+
         newrow <- data.frame(as.list(rate))
         row.names(newrow) = title
         plateMasterBulk <- rbind(plateMasterBulk, newrow)
         
-        #ratesdf[title,"max_mean"] <- max_rate
-        #ratesdf[title,"max_sd"] <- max_sd
-        #ratesdf[title,"max_timepoint_id"] <- tp_id
-        #ratesdf[title,"avg_potential_rate"] <- avg
-        #ratesdf[title,"potential_sd"] <- avg_sd
-        
-        #add rowname column so can write to csv later
-        #ratesdf$rowname <- title
-        
-        #insert rates into master sheet
-        #plateMasterBulk <- rbind.fill(plateMasterBulk,ratesdf)
-                
         #insert fl.change.kc into flchange.list so can plot 
         fl.change.kc$mean <- rowMeans(fl.change.kc[,grep("live",colnames(fl.change.kc))])
         fl.change.kc$sd <- apply(fl.change.kc[,grep("live",colnames(fl.change.kc))],1,sd)
